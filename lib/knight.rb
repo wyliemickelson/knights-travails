@@ -1,5 +1,3 @@
-require 'tree_support'
-
 class Knight
   attr_accessor :pos, :visited, :children, :goal, :parent
 
@@ -24,9 +22,5 @@ class Knight
     end
     valid = moves.select { |move| move.all? { |coord| coord.between?(0, 7) } && !@@visited.include?(move) }
     valid.include?(goal) ? @children << Knight.new(goal, goal, self) : valid.each { |move| @children << Knight.new(move, goal, self) }
-  end
-
-  def display
-    puts TreeSupport.tree(self)
   end
 end
